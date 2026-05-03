@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Listing | AuctionHouse</title>
+    <link rel="stylesheet" href="/css/output.css" />
+  </head>
+  <body class="bg-gray-100 min-h-screen">
+
+    <script type="module" src="/js/components/navbar.js"></script>
+
+    <main class="max-w-2xl mx-auto px-4 py-10">
+      <a href="/index.html" class="text-sm text-[#0063FB] hover:underline mb-6 inline-block">← Back to listings</a>
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
+        <h1 class="text-2xl font-extrabold text-gray-800 mb-1">Create a listing</h1>
+        <p class="text-gray-400 text-sm mb-6">Fill in the details to list your item for auction</p>
+
+        <div id="error-msg" class="hidden bg-red-50 border border-red-200 text-red-600 text-sm rounded-lg px-4 py-3 mb-4"></div>
+        <div id="success-msg" class="hidden bg-green-50 border border-green-200 text-green-600 text-sm rounded-lg px-4 py-3 mb-4"></div>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Title</label>
+            <input type="text" id="title" placeholder="What are you selling?"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0063FB]" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+            <textarea id="description" rows="3" placeholder="Describe your item..."
+              class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0063FB]"></textarea>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
+            <input type="text" id="media" placeholder="https://..."
+              class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0063FB]" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Deadline</label>
+            <input type="datetime-local" id="deadline"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0063FB]" />
+          </div>
+          <button id="create-btn" class="w-full bg-[#0063FB] hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition text-sm">
+            Create listing
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="/js/create-listing.js"></script>
+  </body>
+</html>

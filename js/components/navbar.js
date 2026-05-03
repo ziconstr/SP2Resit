@@ -23,6 +23,7 @@ function createNavbar() {
         <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
           <a href="/index.html" class="text-white hover:text-yellow-300 transition">Browse</a>
           ${isLoggedIn ? `
+            <a href="/create-listing.html" class="text-white hover:text-yellow-300 transition">Sell</a>
             <a href="/profile.html" class="text-white hover:text-yellow-300 transition">Profile</a>
             <span class="text-blue-200 text-xs">Credits: <strong class="text-white">${profile?.credits ?? 0}</strong></span>
             <button id="logout-btn" class="bg-white text-[#0063FB] font-semibold px-4 py-1.5 rounded-full hover:bg-yellow-300 hover:text-black transition">Logout</button>
@@ -43,6 +44,7 @@ function createNavbar() {
       <div id="mobile-menu" class="hidden md:hidden bg-[#0052cc] px-4 pb-4 flex flex-col gap-3 text-sm font-medium">
         <a href="/index.html" class="text-white hover:text-yellow-300 transition pt-2">Browse</a>
         ${isLoggedIn ? `
+          <a href="/create-listing.html" class="text-white hover:text-yellow-300 transition">Sell</a>
           <a href="/profile.html" class="text-white hover:text-yellow-300 transition">Profile</a>
           <span class="text-blue-200 text-xs">Credits: <strong class="text-white">${profile?.credits ?? 0}</strong></span>
           <button id="logout-btn-mobile" class="bg-white text-[#0063FB] font-semibold px-4 py-2 rounded-full hover:bg-yellow-300 hover:text-black transition w-full">Logout</button>

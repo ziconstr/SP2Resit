@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,13 +7,16 @@
     <link rel="stylesheet" href="/css/output.css" />
   </head>
   <body class="bg-gray-100 min-h-screen">
-
     <script type="module" src="/js/components/navbar.js"></script>
 
     <div class="bg-[#0063FB] pb-12 pt-8 px-4">
       <div class="max-w-2xl mx-auto text-center">
-        <h1 class="text-white text-4xl font-extrabold mb-2">Find your next great deal</h1>
-        <p class="text-blue-200 mb-8 text-sm">Browse thousands of listings and place your bids</p>
+        <h1 class="text-white text-4xl font-extrabold mb-2">
+          Find your next great deal
+        </h1>
+        <p class="text-blue-200 mb-8 text-sm">
+          Browse thousands of listings and place your bids
+        </p>
         <div class="flex bg-white rounded-full overflow-hidden shadow-xl">
           <input
             type="text"
@@ -21,7 +24,10 @@
             placeholder="Search listings..."
             class="flex-1 px-6 py-3 text-gray-700 focus:outline-none text-sm"
           />
-          <button id="search-btn" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-6 py-3 text-sm transition">
+          <button
+            id="search-btn"
+            class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-6 py-3 text-sm transition"
+          >
             Search
           </button>
         </div>
@@ -33,12 +39,17 @@
         <h2 class="text-xl font-bold text-gray-700">Latest listings</h2>
         <span id="listing-count" class="text-sm text-gray-400"></span>
       </div>
-      <div id="listings-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+      <div
+        id="listings-grid"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+      >
         <p class="text-gray-400 col-span-4">Loading listings...</p>
       </div>
     </main>
 
-    <footer class="text-center text-gray-400 text-xs py-8 mt-8 border-t border-gray-200">
+    <footer
+      class="text-center text-gray-400 text-xs py-8 mt-8 border-t border-gray-200"
+    >
       © 2026 AuctionHouse. All rights reserved.
     </footer>
 
