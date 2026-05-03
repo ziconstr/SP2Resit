@@ -23,6 +23,12 @@ async function placeBid(id, amount) {
   });
 }
 
+async function deleteListing(id) {
+  return await fetchData(`${API_BASE}/auction/listings/${id}`, {
+    method: "DELETE",
+  });
+}
+
 function renderListing(listing) {
   const profile = getProfile();
   const isLoggedIn = !!localStorage.getItem("token");
@@ -60,7 +66,18 @@ function renderListing(listing) {
         </div>
       </div>
 
-      ${isLoggedIn && !isOwner ? `
+      ${isOwner ? `
+        <div class="mt-6 space-y-3">
+          <a href="/create-listing.html?edit=${listing.id}"
+            class="block w-full text-center bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-2.5 rounded-lg transition text-sm">
+            Edit listing
+          </a>
+          <button id="delete-btn"
+            class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2.5 rounded-lg transition text-sm">
+            Delete listing
+          </button>
+        </div>
+      ` : isLoggedIn ? `
         <div class="mt-6 flex gap-3">
           <input type="number" id="bid-amount" placeholder="Enter bid amount" min="${highestBid + 1}"
             class="flex-1 border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0063FB]" />
@@ -70,13 +87,9 @@ function renderListing(listing) {
         </div>
         <div id="bid-error" class="hidden bg-red-50 border border-red-200 text-red-600 text-sm rounded-lg px-4 py-3 mt-3"></div>
         <div id="bid-success" class="hidden bg-green-50 border border-green-200 text-green-600 text-sm rounded-lg px-4 py-3 mt-3"></div>
-      ` : !isLoggedIn ? `
+      ` : `
         <div class="mt-6 bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-sm text-yellow-700">
           <a href="/login.html" class="font-bold underline">Log in</a> to place a bid on this listing.
-        </div>
-      ` : `
-        <div class="mt-6 bg-gray-50 border border-gray-200 rounded-xl p-4 text-sm text-gray-500">
-          You cannot bid on your own listing.
         </div>
       `}
 
@@ -96,6 +109,7 @@ function renderListing(listing) {
     </div>
   `;
 
+  // Bid logic
   if (isLoggedIn && !isOwner) {
     const bidBtn = document.getElementById("bid-btn");
     const bidError = document.getElementById("bid-error");
@@ -125,6 +139,24 @@ function renderListing(listing) {
         bidError.classList.remove("hidden");
         bidBtn.textContent = "Place bid";
         bidBtn.disabled = false;
+      }
+    });
+  }
+
+  // Delete logic
+  if (isOwner) {
+    const deleteBtn = document.getElementById("delete-btn");
+    deleteBtn.addEventListener("click", async () => {
+      if (!confirm("Are you sure you want to delete this listing?")) return;
+      deleteBtn.textContent = "Deleting...";
+      deleteBtn.disabled = true;
+      try {
+        await deleteListing(listing.id);
+        window.location.href = "/index.html";
+      } catch (err) {
+        alert("Failed to delete: " + err.message);
+        deleteBtn.textContent = "Delete listing";
+        deleteBtn.disabled = false;
       }
     });
   }
