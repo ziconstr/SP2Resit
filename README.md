@@ -1,5 +1,8 @@
 # AuctionHouse
 
+<img width="1001" height="1170" alt="image" src="https://github.com/user-attachments/assets/43ba4121-490a-4e20-b220-3ce771f425e0" />
+
+
 **[AuctionHouse](https://sp2resit.netlify.app/)** is a student-only online auction platform where registered users can list items for bidding, place bids using virtual credits, and manage their profiles. Every new user starts with 1000 credits to use for bidding, and can earn more by selling their own items. Visitors can browse and search listings freely, but placing bids and creating listings requires a registered `@stud.noroff.no` account.
 
 ## Features
