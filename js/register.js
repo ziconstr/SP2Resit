@@ -37,9 +37,7 @@ btn.addEventListener("click", async () => {
     await register(name, email, password);
     successMsg.textContent = "Account created! Redirecting to login...";
     successMsg.classList.remove("hidden");
-    setTimeout(() => {
-      window.location.href = "/login.html";
-    }, 1500);
+    setTimeout(() => { window.location.href = "/login.html"; }, 1500);
   } catch (err) {
     errorMsg.textContent = err.message;
     errorMsg.classList.remove("hidden");

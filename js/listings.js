@@ -22,23 +22,16 @@ async function getListings(query = "") {
   const url = query
     ? `${API_BASE}/auction/listings/search?q=${query}&_seller=true&_bids=true&_active=true`
     : `${API_BASE}/auction/listings?_seller=true&_bids=true&_active=true&limit=24&sort=created&sortOrder=desc`;
-
   const data = await fetchData(url);
   return data.data;
 }
 
 function renderListings(listings) {
   if (!listings || !listings.length) {
-    grid.innerHTML = `
-      <div class="col-span-4 text-center py-16">
-        <p class="text-gray-400 text-lg">No listings found.</p>
-      </div>`;
+    grid.innerHTML = `<div class="col-span-4 text-center py-16"><p class="text-gray-400 text-lg">No listings found.</p></div>`;
     return;
   }
-
-  if (listingCount) {
-    listingCount.textContent = `${listings.length} listings found`;
-  }
+  if (listingCount) listingCount.textContent = `${listings.length} listings found`;
 
   grid.innerHTML = listings.map((listing) => {
     const image = listing.media?.[0]?.url || "https://placehold.co/400x300?text=No+Image";
@@ -50,12 +43,8 @@ function renderListings(listings) {
       <a href="/listing.html?id=${listing.id}"
         class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200 flex flex-col group">
         <div class="relative overflow-hidden">
-          <img
-            src="${image}"
-            alt="${listing.title}"
-            class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-300"
-            onerror="this.src='https://placehold.co/400x300?text=No+Image'"
-          />
+          <img src="${image}" alt="${listing.title}" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-300"
+            onerror="this.src='https://placehold.co/400x300?text=No+Image'" />
           <span class="absolute top-2 right-2 bg-[#0063FB] text-white text-xs font-semibold px-2 py-1 rounded-full shadow">
             ${bids} bid${bids !== 1 ? "s" : ""}
           </span>
@@ -79,19 +68,11 @@ async function init(query = "") {
     const listings = await getListings(query);
     renderListings(listings);
   } catch (err) {
-    grid.innerHTML = `
-      <div class="col-span-4 text-center py-16">
-        <p class="text-red-400">Failed to load listings: ${err.message}</p>
-      </div>`;
+    grid.innerHTML = `<div class="col-span-4 text-center py-16"><p class="text-red-400">Failed to load listings: ${err.message}</p></div>`;
   }
 }
 
-searchBtn.addEventListener("click", () => {
-  init(searchInput.value.trim());
-});
-
-searchInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") init(searchInput.value.trim());
-});
+searchBtn.addEventListener("click", () => init(searchInput.value.trim()));
+searchInput.addEventListener("keydown", (e) => { if (e.key === "Enter") init(searchInput.value.trim()); });
 
 init();

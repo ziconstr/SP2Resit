@@ -3,8 +3,7 @@ import { API_BASE, fetchData } from "/js/api.js";
 const container = document.getElementById("listing-container");
 
 function getIdFromUrl() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("id");
+  return new URLSearchParams(window.location.search).get("id");
 }
 
 function getProfile() {
@@ -34,12 +33,8 @@ function renderListing(listing) {
   const highestBid = bids.length ? Math.max(...bids.map(b => b.amount)) : 0;
 
   container.innerHTML = `
-    <img
-      src="${image}"
-      alt="${listing.title}"
-      class="w-full h-72 object-cover"
-      onerror="this.src='https://placehold.co/800x400?text=No+Image'"
-    />
+    <img src="${image}" alt="${listing.title}" class="w-full h-72 object-cover"
+      onerror="this.src='https://placehold.co/800x400?text=No+Image'" />
     <div class="p-8">
       <div class="flex items-start justify-between gap-4 flex-wrap">
         <div>
@@ -56,7 +51,7 @@ function renderListing(listing) {
 
       <div class="mt-6 bg-gray-50 rounded-xl p-4 flex items-center justify-between">
         <div>
-          <p class="text-xs text-gray-400">Current highest bid</p>
+          <p class="text-xs text-gray-400">Highest bid</p>
           <p class="text-2xl font-extrabold text-[#0063FB]">${highestBid} credits</p>
         </div>
         <div>
@@ -67,16 +62,9 @@ function renderListing(listing) {
 
       ${isLoggedIn && !isOwner ? `
         <div class="mt-6 flex gap-3">
-          <input
-            type="number"
-            id="bid-amount"
-            placeholder="Enter bid amount"
-            min="${highestBid + 1}"
-            class="flex-1 border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0063FB]"
-          />
-          <button
-            id="bid-btn"
-            class="bg-[#0063FB] hover:bg-blue-700 text-white font-bold px-6 py-2.5 rounded-lg transition text-sm">
+          <input type="number" id="bid-amount" placeholder="Enter bid amount" min="${highestBid + 1}"
+            class="flex-1 border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0063FB]" />
+          <button id="bid-btn" class="bg-[#0063FB] hover:bg-blue-700 text-white font-bold px-6 py-2.5 rounded-lg transition text-sm">
             Place bid
           </button>
         </div>
@@ -104,9 +92,7 @@ function renderListing(listing) {
             `).join("")}
           </div>
         </div>
-      ` : `
-        <p class="text-gray-400 text-sm mt-8">No bids yet. Be the first!</p>
-      `}
+      ` : `<p class="text-gray-400 text-sm mt-8">No bids yet. Be the first!</p>`}
     </div>
   `;
 
@@ -131,7 +117,7 @@ function renderListing(listing) {
 
       try {
         await placeBid(listing.id, amount);
-        bidSuccess.textContent = "Bid placed successfully! Reloading...";
+        bidSuccess.textContent = "Bid placed! Reloading...";
         bidSuccess.classList.remove("hidden");
         setTimeout(() => window.location.reload(), 1500);
       } catch (err) {
@@ -150,7 +136,6 @@ async function init() {
     container.innerHTML = `<p class="text-red-400 p-8">No listing ID found.</p>`;
     return;
   }
-
   try {
     const listing = await getListing(id);
     renderListing(listing);
