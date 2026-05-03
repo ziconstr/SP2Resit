@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register | AuctionHouse</title>
+    <link rel="stylesheet" href="/css/output.css" />
+  </head>
+  <body class="bg-gray-100 min-h-screen">
+
+    <script type="module" src="/js/components/navbar.js"></script>
+
+    <main class="max-w-md mx-auto px-4 py-16">
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
+
+        <h1 class="text-2xl font-extrabold text-gray-800 mb-1">Create account</h1>
+        <p class="text-gray-400 text-sm mb-6">You need a <strong>@stud.noroff.no</strong> email to register</p>
+
+        <div id="error-msg" class="hidden bg-red-50 border border-red-200 text-red-600 text-sm rounded-lg px-4 py-3 mb-4"></div>
+        <div id="success-msg" class="hidden bg-green-50 border border-green-200 text-green-600 text-sm rounded-lg px-4 py-3 mb-4"></div>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="your_username"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0063FB]"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="name@stud.noroff.no"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0063FB]"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Min. 8 characters"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0063FB]"
+            />
+          </div>
+
+          <button
+            id="register-btn"
+            class="w-full bg-[#0063FB] hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition text-sm">
+            Create account
+          </button>
+        </div>
+
+        <p class="text-center text-sm text-gray-400 mt-6">
+          Already have an account?
+          <a href="/login.html" class="text-[#0063FB] font-semibold hover:underline">Log in</a>
+        </p>
+
+      </div>
+    </main>
+
+    <script type="module" src="/js/register.js"></script>
+  </body>
+</html>
